@@ -13,3 +13,5 @@ LCD_E = 8               # GPIO8 = Pi pin 24
 
 GPIO.setup(LCD_RS, GPIO.OUT)
 GPIO.setup(LCD_E, GPIO.OUT)
+
+print("LCD program : Done")
