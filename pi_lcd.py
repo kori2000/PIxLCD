@@ -101,6 +101,10 @@ def MoveCursor(row):
 InitLCD
 DisplayMessageOnLCD('Press dah Button')
 
+mSec = 1  # use half-millisecond delay
+time.sleep(mSec)
+SendByte(CLEARDISPLAY)  # remove any stray characters on display
+
 
 # runWh = True
 
