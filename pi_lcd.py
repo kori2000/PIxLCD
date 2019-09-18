@@ -98,15 +98,15 @@ def MoveCursor(row):
 
 InitLCD
 SendByte(0x01)
-DisplayMessageOnLCD('Press dah Button')
+# DisplayMessageOnLCD('Press dah Button')
 
-runWh = True
+# runWh = True
 
-while (runWh):
-    MoveCursor(1)
-    switchValues  = CheckSwitches()
-    decimalResult = " %d %d %d %d" % switchValues
-    DisplayMessageOnLCD(decimalResult)
+# while (runWh):
+#     MoveCursor(1)
+#     switchValues  = CheckSwitches()
+#     decimalResult = " %d %d %d %d" % switchValues
+#     DisplayMessageOnLCD(decimalResult)
 
 
 print("LCD program : Done.")
