@@ -52,6 +52,11 @@ def SendByte(data, charMode=False):
     SendNibble(data)                # send lower bits now
     PulseEnableLine()               # pulse the enable line
 
+# Send string of characters to display at current cursor position
+def ShowMessage(string):
+    for character in string:
+        SendChar(character)
+
 # initialize the LCD controller & clear display
 SendByte(0x33)  # initialize
 SendByte(0x32)  # set to 4-bit mode
@@ -60,5 +65,7 @@ SendByte(0x0C)  # turn cursor off (0x0E to enable)
 SendByte(0x06)  # shift cursor right
 SendByte(CLEARDISPLAY)  # remove any stray characters on display
 ########################################################################
+
+ShowMessage('Deine Mudda :=)')
 
 print("LCD program : Done")
