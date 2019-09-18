@@ -7,7 +7,7 @@ print("LCD program : Importing PIN Input")
 
 GPIO.setwarnings(False)  ## Ignore warnings
 
-GPIO.setmode(GPIO.BOARD) ## Use board pin numbering
+GPIO.setmode(GPIO.BCM) ## Use board pin numbering
 
 # Outputs Pin Config
 LCD_RS = 7   # GPIO7  = Pi pin 26
