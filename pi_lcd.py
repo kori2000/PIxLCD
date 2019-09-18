@@ -20,20 +20,11 @@ LCD_D5 = 18  # GPIO18 = Pi pin 12
 LCD_D6 = 27  # GPIO21 = Pi pin 13
 LCD_D7 = 22  # GPIO22 = Pi pin 15
 
-GPIO.setup(LCD_RS, GPIO.OUT)
-GPIO.setup(LCD_E,  GPIO.OUT)
-GPIO.setup(LCD_D4, GPIO.OUT)
-GPIO.setup(LCD_D5, GPIO.OUT)
-GPIO.setup(LCD_D6, GPIO.OUT)
-GPIO.setup(LCD_D7, GPIO.OUT)
-
 # Input Button Pins
 SW1 = 4      # GPIO4  = Pi pin 7
 SW2 = 23     # GPIO16 = Pi pin 16
 SW3 = 10     # GPIO10 = Pi pin 19
 SW4 = 9      # GPIO9  = Pi pin 21
-
-GPIO.setup(SW1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 ########################################################################
 
@@ -75,11 +66,33 @@ def ResetLCD():
     SendByte(0x0C)  # turn cursor off (0x0E to enable)
     SendByte(0x06)  # shift cursor right
     SendByte(CLEARDISPLAY)  # remove any stray characters on display
+
+def InitController():
+    GPIO.setup(LCD_RS, GPIO.OUT)
+    GPIO.setup(LCD_E,  GPIO.OUT)
+    GPIO.setup(LCD_D4, GPIO.OUT)
+    GPIO.setup(LCD_D5, GPIO.OUT)
+    GPIO.setup(LCD_D6, GPIO.OUT)
+    GPIO.setup(LCD_D7, GPIO.OUT)
+    GPIO.setup(SW1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(SW2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(SW3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    GPIO.setup(SW4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+# Check status of all four switches on the LCD board
+def CheckSwitches():
+    val1 = not GPIO.input(SW1)
+    val2 = not GPIO.input(SW2)
+    val3 = not GPIO.input(SW3)
+    val4 = not GPIO.input(SW4)
+    return (val4, val1, val2, val3)
     
 ########################################################################
 
+InitController
 ResetLCD
-SendByte(CLEARDISPLAY)  # remove any stray characters on display
-DisplayMessageOnLCD('Deine Mudda :=)')
+DisplayMessageOnLCD('X')
+time.sleep(1) 
+ResetLCD
 
 print("LCD program : Done.")
