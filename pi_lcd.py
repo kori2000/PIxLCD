@@ -5,6 +5,9 @@ import time             ## Import 'time' library. Allows us to use 'sleep'
 
 print("LCD program : Starting...")
 
+GPIO.setwarnings(False)  ## Ignore warnings
+GPIO.setmode(GPIO.BCM)   ## Using BCM GPIO 00..nn numbers
+
 # HD44780 Controller Commands
 CLEARDISPLAY = 0x01
 SETCURSOR    = 0x80
@@ -22,6 +25,18 @@ SW1 = 4      # GPIO4  = Pi pin 7
 SW2 = 23     # GPIO16 = Pi pin 16
 SW3 = 10     # GPIO10 = Pi pin 19
 SW4 = 9      # GPIO9  = Pi pin 21
+
+GPIO.setup(LCD_RS, GPIO.OUT)
+GPIO.setup(LCD_E,  GPIO.OUT)
+GPIO.setup(LCD_D4, GPIO.OUT)
+GPIO.setup(LCD_D5, GPIO.OUT)
+GPIO.setup(LCD_D6, GPIO.OUT)
+GPIO.setup(LCD_D7, GPIO.OUT)
+
+GPIO.setup(SW1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(SW2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(SW3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(SW4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 ########################################################################
 
@@ -56,28 +71,13 @@ def DisplayMessageOnLCD(string):
         SendByte(ord(character), True)
 
 # initialize the LCD controller & clear display
-def ResetLCD():
+def InitLCD():
     SendByte(0x33)  # initialize
     SendByte(0x32)  # set to 4-bit mode
     SendByte(0x28)  # 2 line, 5x7 matrix
     SendByte(0x0C)  # turn cursor off (0x0E to enable)
     SendByte(0x06)  # shift cursor right
     SendByte(CLEARDISPLAY)  # remove any stray characters on display
-
-# initialize the HD44780 Controller
-def InitController():
-    GPIO.setwarnings(False)  ## Ignore warnings
-    GPIO.setmode(GPIO.BCM)   ## Using BCM GPIO 00..nn numbers
-    GPIO.setup(LCD_RS, GPIO.OUT)
-    GPIO.setup(LCD_E,  GPIO.OUT)
-    GPIO.setup(LCD_D4, GPIO.OUT)
-    GPIO.setup(LCD_D5, GPIO.OUT)
-    GPIO.setup(LCD_D6, GPIO.OUT)
-    GPIO.setup(LCD_D7, GPIO.OUT)    
-    GPIO.setup(SW1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(SW2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(SW3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-    GPIO.setup(SW4, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # Check status of all four switches on the LCD board
 def CheckSwitches():
@@ -89,10 +89,9 @@ def CheckSwitches():
     
 ########################################################################
 
-InitController
-ResetLCD
-DisplayMessageOnLCD('X')
-time.sleep(1) 
-ResetLCD
+InitLCD
+DisplayMessageOnLCD('Deine Mudda :=)')
+time.sleep(1)     
+InitLCD
 
 print("LCD program : Done.")
