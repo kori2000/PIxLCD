@@ -68,6 +68,8 @@ def SendByte(data, charMode=False):
 
 # Send string of characters to display at current cursor position
 def DisplayMessageOnLCD(string):
+    mSec = 0.0005  # use half-millisecond delay
+    time.sleep(mSec)   
     SendByte(CLEARDISPLAY)
     for character in string:
         SendByte(ord(character), True)
@@ -96,11 +98,9 @@ def MoveCursor(row):
     
 ########################################################################
 
-SendByte(0x01)
 InitLCD
-SendByte(0x01)
 DisplayMessageOnLCD('Press dah Button')
-SendByte(0x01)
+
 
 # runWh = True
 
