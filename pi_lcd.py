@@ -109,7 +109,7 @@ while (runWh):
         runWh = False
         DisplayMessageOnLCD("Bye bye...")
     else:
-        runWh = False
+        runWh = True
 
 
 print("LCD program : Done.")
