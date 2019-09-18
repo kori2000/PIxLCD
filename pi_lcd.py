@@ -108,6 +108,8 @@ while (runWh):
     if GPIO.input(SW1) == 1:
         runWh = False
         DisplayMessageOnLCD("Bye bye...")
+    else:
+        runWh = False
 
 
 print("LCD program : Done.")
