@@ -92,6 +92,6 @@ def CheckSwitches():
 InitLCD
 DisplayMessageOnLCD('Deine Mudda :=)')
 time.sleep(1)     
-InitLCD
+SendByte(0x01)  # shift cursor right
 
 print("LCD program : Done.")
