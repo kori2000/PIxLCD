@@ -11,6 +11,7 @@ GPIO.setmode(GPIO.BCM)   ## Using BCM GPIO 00..nn numbers
 # HD44780 Controller Commands
 CLEARDISPLAY = 0x01
 SETCURSOR    = 0x80
+LINE         = [0x00, 0x40]
 
 # Output LCD Pins
 LCD_RS = 7   # GPIO7  = Pi pin 26
@@ -86,12 +87,21 @@ def CheckSwitches():
     val3 = not GPIO.input(SW3)
     val4 = not GPIO.input(SW4)
     return (val4, val1, val2, val3)
+
+# Moves cursor to the given row, Expects row values 0-1 for 16x2 display; 0-3 for 20x4 display
+def MoveCursor(row):
+    addr = LINE[row]
+    SendByte(SETCURSOR + addr)
     
 ########################################################################
 
 InitLCD
-DisplayMessageOnLCD('Deine Mudda :=)')
-time.sleep(1)     
-SendByte(0x01)  # shift cursor right
+DisplayMessageOnLCD('Press dah Button...')
+
+while (True):
+    MoveCursor(1)
+    switchValues  = CheckSwitches()
+    decimalResult = " %d %d %d %d" % switchValues
+    DisplayMessageOnLCD(decimalResult)
 
 print("LCD program : Done.")
