@@ -96,12 +96,18 @@ def MoveCursor(row):
 ########################################################################
 
 InitLCD
-DisplayMessageOnLCD('Press dah Button...')
+DisplayMessageOnLCD('Press dah Button')
 
-while (True):
+runWh = True
+
+while (runWh):
     MoveCursor(1)
     switchValues  = CheckSwitches()
     decimalResult = " %d %d %d %d" % switchValues
     DisplayMessageOnLCD(decimalResult)
+    if GPIO.input(SW1) is True
+        runWh = False
+        DisplayMessageOnLCD("Bye bye...")
+
 
 print("LCD program : Done.")
