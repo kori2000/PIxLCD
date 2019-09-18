@@ -68,6 +68,7 @@ def SendByte(data, charMode=False):
 
 # Send string of characters to display at current cursor position
 def DisplayMessageOnLCD(string):
+    SendByte(CLEARDISPLAY)
     for character in string:
         SendByte(ord(character), True)
 
