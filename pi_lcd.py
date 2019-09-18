@@ -55,7 +55,7 @@ def SendByte(data, charMode=False):
 # Send string of characters to display at current cursor position
 def ShowMessage(string):
     for character in string:
-        SendChar(character)
+        SendByte(ord(character), True)
 
 # initialize the LCD controller & clear display
 SendByte(0x33)  # initialize
