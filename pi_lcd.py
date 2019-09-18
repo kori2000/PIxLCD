@@ -79,6 +79,7 @@ def ResetLCD():
 ########################################################################
 
 ResetLCD
+SendByte(CLEARDISPLAY)  # remove any stray characters on display
 DisplayMessageOnLCD('Deine Mudda :=)')
 
 print("LCD program : Done.")
