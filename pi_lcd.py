@@ -17,9 +17,11 @@ LCD_D5 = 18  # GPIO18 = Pi pin 12
 LCD_D6 = 27  # GPIO21 = Pi pin 13
 LCD_D7 = 22  # GPIO22 = Pi pin 15
 
-OUTPUTS = [LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7]
-
-for lcdLine in OUTPUTS:
-    GPIO.setup(lcdLine, GPIO.OUT)
+GPIO.setup(LCD_RS, GPIO.OUT)
+GPIO.setup(LCD_E,  GPIO.OUT)
+GPIO.setup(LCD_D4, GPIO.OUT)
+GPIO.setup(LCD_D5, GPIO.OUT)
+GPIO.setup(LCD_D6, GPIO.OUT)
+GPIO.setup(LCD_D7, GPIO.OUT)
 
 print("LCD program : Done")
