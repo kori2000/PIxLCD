@@ -97,6 +97,7 @@ def MoveCursor(row):
 ########################################################################
 
 InitLCD
+SendByte(0x01)
 DisplayMessageOnLCD('Press dah Button')
 
 runWh = True
