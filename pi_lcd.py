@@ -105,11 +105,6 @@ while (runWh):
     switchValues  = CheckSwitches()
     decimalResult = " %d %d %d %d" % switchValues
     DisplayMessageOnLCD(decimalResult)
-    if GPIO.input(SW1) == 1:
-        runWh = False
-        DisplayMessageOnLCD("Bye bye...")
-    else:
-        runWh = True
 
 
 print("LCD program : Done.")
