@@ -99,7 +99,7 @@ def MoveCursor(row):
 ########################################################################
 
 InitLCD
-DisplayMessageOnLCD('Press dah Button')
+DisplayMessageOnLCD('')
 
 mSec = 1  # use half-millisecond delay
 time.sleep(mSec)
