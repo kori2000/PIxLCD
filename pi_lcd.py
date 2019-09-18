@@ -27,14 +27,30 @@ GPIO.setup(LCD_D5, GPIO.OUT)
 GPIO.setup(LCD_D6, GPIO.OUT)
 GPIO.setup(LCD_D7, GPIO.OUT)
 
+# Pulse the LCD Enable line; used for clocking in data
+def PulseEnableLine():
+    mSec = 0.0005                   # use half-millisecond delay
+    time.sleep(mSec)                # give time for inputs to settle
+    GPIO.output(LCD_E, GPIO.HIGH)   # pulse E high
+    time.sleep(mSec)                # wait
+    GPIO.output(LCD_E, GPIO.LOW)    # return E low
+    time.sleep(mSec)                # wait before doing anything else
+
+# sends upper 4 bits of data byte to LCD data pins D4-D7
+def SendNibble(data):    
+    GPIO.output(LCD_D4, bool(data & 0x10))
+    GPIO.output(LCD_D5, bool(data & 0x20))
+    GPIO.output(LCD_D6, bool(data & 0x40))
+    GPIO.output(LCD_D7, bool(data & 0x80))
+
 # Send one byte to LCD controller
 def SendByte(data, charMode=False):    
-GPIO.output(LCD_RS, charMode)   # set mode: command vs. char
-SendNibble(data)                # send upper bits first
-PulseEnableLine()               # pulse the enable line
-data = (data & 0x0F) << 4       # shift 4 bits to left
-SendNibble(data)                # send lower bits now
-PulseEnableLine()               # pulse the enable line
+    GPIO.output(LCD_RS, charMode)   # set mode: command vs. char
+    SendNibble(data)                # send upper bits first
+    PulseEnableLine()               # pulse the enable line
+    data = (data & 0x0F) << 4       # shift 4 bits to left
+    SendNibble(data)                # send lower bits now
+    PulseEnableLine()               # pulse the enable line
 
 # initialize the LCD controller & clear display
 SendByte(0x33)  # initialize
