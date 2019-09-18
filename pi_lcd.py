@@ -99,7 +99,8 @@ def MoveCursor(row):
 SendByte(0x01)
 InitLCD
 SendByte(0x01)
-# DisplayMessageOnLCD('Press dah Button')
+DisplayMessageOnLCD('Press dah Button')
+SendByte(0x01)
 
 # runWh = True
 
