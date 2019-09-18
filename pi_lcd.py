@@ -5,9 +5,6 @@ import time             ## Import 'time' library. Allows us to use 'sleep'
 
 print("LCD program : Starting...")
 
-GPIO.setwarnings(False)  ## Ignore warnings
-GPIO.setmode(GPIO.BCM)   ## Using BCM GPIO 00..nn numbers
-
 # HD44780 Controller Commands
 CLEARDISPLAY = 0x01
 SETCURSOR    = 0x80
@@ -67,13 +64,16 @@ def ResetLCD():
     SendByte(0x06)  # shift cursor right
     SendByte(CLEARDISPLAY)  # remove any stray characters on display
 
+# initialize the HD44780 Controller
 def InitController():
+    GPIO.setwarnings(False)  ## Ignore warnings
+    GPIO.setmode(GPIO.BCM)   ## Using BCM GPIO 00..nn numbers
     GPIO.setup(LCD_RS, GPIO.OUT)
     GPIO.setup(LCD_E,  GPIO.OUT)
     GPIO.setup(LCD_D4, GPIO.OUT)
     GPIO.setup(LCD_D5, GPIO.OUT)
     GPIO.setup(LCD_D6, GPIO.OUT)
-    GPIO.setup(LCD_D7, GPIO.OUT)
+    GPIO.setup(LCD_D7, GPIO.OUT)    
     GPIO.setup(SW1, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(SW2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(SW3, GPIO.IN, pull_up_down=GPIO.PUD_UP)
