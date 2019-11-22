@@ -62,7 +62,7 @@ def CheckSwitches():
         ShowTemp()
         time.sleep(1)
     elif val3:
-        ShowMessage('Ready...        ')
+        ShowExit()
         print('LCD Exit')
         sys.exit(0)
     else:    
@@ -101,6 +101,12 @@ def ShowTemp():
     ShowMessage("RasPi Sensor : ")
     GotoLine(1)
     ShowMessage(msg)
+
+def ShowExit():
+    GotoLine(0)
+    ShowMessage("Ready...       ")
+    GotoLine(1)
+    ShowMessage("                ")
 
 def check_CPU_temp():
     temp = None
