@@ -100,7 +100,7 @@ def ShowTemp():
     GotoLine(0)
     ShowMessage("TEMP :       ")
     GotoLine(1)
-    ShowMessage(temp)
+    ShowMessage(msg)
 
 def check_CPU_temp():
     temp = None
