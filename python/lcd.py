@@ -52,16 +52,16 @@ def CheckSwitches():
     print("val4 ", val4)
 
     if val4:
-        ShowWlanIP()        
+        ShowWlanIP()
+        time.sleep(1)
     elif val1:
         ShowLanIP()
+        time.sleep(1)
     else:    
         GotoLine(0)
         ShowMessage("Press Button    ")
         GotoLine(1)
         ShowMessage("                ")
-    
-    time.sleep(1)
 
 
 def get_ip_address(ifname):
