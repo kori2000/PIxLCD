@@ -156,7 +156,6 @@ def InitLCD():
     SendByte(CLEARDISPLAY) #remove any stray characters on display
 
 def SendSmiley():
-    InitLCD()
     SendByte(0x0)
     SendByte(0x0)
     SendByte(0xa)
