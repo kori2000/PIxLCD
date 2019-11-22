@@ -104,8 +104,9 @@ def ShowTemp():
 
 def ShowExit():
     GotoLine(0)
-    ShowMessage("Bye, bye :)    ")
+    ShowMessage("Bye, bye :)       ")
     time.sleep(1)
+    GotoLine(0)
     ShowMessage("Ready...       ")
     GotoLine(1)
     ShowMessage("                ")
