@@ -50,7 +50,8 @@ def CheckSwitches():
         return (val4,val1,val2,val3)
 
 def ShowIP():
-    return ("a")
+    GotoLine(1)
+    ShowMessage("IP ADRESS")
 
 
 #Pulse the LCD Enable line; used for clocking in data
