@@ -103,7 +103,8 @@ def ShowTemp():
     ShowMessage(msg)
 
 def ShowExit():
-    SendSmiley()
+    GotoLine(0)
+    ShowMessage("Bye, bye :)    ")
     time.sleep(1)
     ShowMessage("Ready...       ")
     GotoLine(1)
@@ -154,15 +155,6 @@ def InitLCD():
     SendByte(0x0C) #turn cursor off (0x0E to enable)
     SendByte(0x06) #shift cursor right
     SendByte(CLEARDISPLAY) #remove any stray characters on display
-
-def SendSmiley():
-    SendByte(0x0)
-    SendByte(0x0)
-    SendByte(0xa)
-    SendByte(0x0)
-    SendByte(0x11)
-    SendByte(0xe)
-    SendByte(0x0)
 
 ########################################################################
 
