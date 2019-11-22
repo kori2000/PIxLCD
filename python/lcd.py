@@ -53,7 +53,7 @@ def CheckSwitches():
 
     if val4:
         ShowWlanIP()        
-    elif val3:
+    elif val1:
         ShowLanIP()
     else:    
         GotoLine(0)
@@ -65,12 +65,15 @@ def CheckSwitches():
 
 
 def get_ip_address(ifname):
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    return socket.inet_ntoa(fcntl.ioctl(
-        s.fileno(),
-        0x8915,  # SIOCGIFADDR
-        struct.pack('256s', ifname[:15])
-    )[20:24])
+    try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        return socket.inet_ntoa(fcntl.ioctl(
+            s.fileno(),
+            0x8915,  # SIOCGIFADDR
+            struct.pack('256s', ifname[:15])
+        )[20:24])
+    except ValueError:
+        return "127.0.0.0"
 
 def ShowLanIP():    
     GotoLine(0)
@@ -153,7 +156,6 @@ InitLCD()
 ShowMessage("Press Button    ")
 while (True):
      CheckSwitches()
-     time.sleep(1)
     # GotoLine(1)
     # switchValues = CheckSwitches()
     # decimalResult = " %d %d %d %d" % switchValues
