@@ -97,7 +97,8 @@ def GotoLine(row):
 ########################################################################
 
 def signal_handler(sig, frame):
-    print('You pressed Ctrl+C!')
+    print('LCD Exit')
+    ShowMessage('Ready...')
     sys.exit(0)
     
 signal.signal(signal.SIGINT, signal_handler)
