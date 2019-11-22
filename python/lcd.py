@@ -56,8 +56,7 @@ def CheckSwitches():
         time.sleep(1)
     else:    
         GotoLine(0)
-        ShowMessage("                ")
-        ShowMessage("Press Button")
+        ShowMessage("Press Button    ")
         GotoLine(1)
         ShowMessage("                ")
 
@@ -143,7 +142,7 @@ print ("LCD program starting. Press CTRL+C to stop.")
 
 InitIO()
 InitLCD()
-ShowMessage('Press a button!')
+ShowMessage("Press Button    ")
 while (True):
      CheckSwitches()
     # GotoLine(1)
