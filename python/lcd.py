@@ -98,6 +98,7 @@ def GotoLine(row):
 
 def signal_handler(sig, frame):
     print('LCD Exit')
+    InitLCD()
     ShowMessage('Ready...')
     sys.exit(0)
     
