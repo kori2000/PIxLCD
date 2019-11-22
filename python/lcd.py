@@ -103,7 +103,6 @@ def ShowTemp():
     ShowMessage(msg)
 
 def ShowExit():
-    GotoLine(0)
     SendSmiley()
     time.sleep(1)
     ShowMessage("Ready...       ")
