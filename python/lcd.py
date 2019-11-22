@@ -98,7 +98,7 @@ def ShowWlanIP():
 def ShowTemp():
     temp, msg = check_CPU_temp()
     GotoLine(0)
-    ShowMessage("TEMP :       ")
+    ShowMessage("RasPi Sensor : ")
     GotoLine(1)
     ShowMessage(msg)
 
