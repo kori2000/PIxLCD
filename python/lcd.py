@@ -43,12 +43,16 @@ def CheckSwitches():
     val3 = not GPIO.input(SW3)
     val4 = not GPIO.input(SW4)
 
-    print(val1)
+    print("val1 ", val1)
+    print("val2 ", val2)
+    print("val3 ", val3)
+    print("val4 ", val4)
 
     if val1 == 1:
         ShowIP()
         time.sleep(1)
     else:    
+        InitLCD()
         GotoLine(1)
         ShowMessage("...")
 
