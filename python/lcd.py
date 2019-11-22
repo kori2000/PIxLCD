@@ -71,8 +71,7 @@ def get_ip_address(ifname):
 
 def ShowIP():    
     GotoLine(0)
-    ShowMessage("                ")
-    ShowMessage("IP WLAN0:")
+    ShowMessage("IP WLAN :       ")
     GotoLine(1)
     ShowMessage(get_ip_address('wlan0') )
 
