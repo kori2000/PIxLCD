@@ -42,8 +42,16 @@ def CheckSwitches():
     val2 = not GPIO.input(SW2)
     val3 = not GPIO.input(SW3)
     val4 = not GPIO.input(SW4)
-    time.sleep(1)
-    return (val4,val1,val2,val3)
+
+    if val1 == 1:
+        ShowIP()
+        time.sleep(1)
+    else:    
+        return (val4,val1,val2,val3)
+
+def ShowIP():
+    return ("a")
+
 
 #Pulse the LCD Enable line; used for clocking in data
 def PulseEnableLine():
