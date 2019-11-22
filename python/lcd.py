@@ -4,6 +4,7 @@ import sys
 import socket
 import fcntl
 import struct
+import re, commands
 import RPi.GPIO as GPIO
 
 # PIN-Configuration
@@ -57,6 +58,13 @@ def CheckSwitches():
     elif val1:
         ShowLanIP()
         time.sleep(1)
+    elif val2:
+        ShowTemp()
+        time.sleep(1)
+    elif val3:
+        ShowMessage('Ready...        ')
+        print('LCD Exit')
+        sys.exit(0)
     else:    
         GotoLine(0)
         ShowMessage("Press Button    ")
@@ -86,6 +94,24 @@ def ShowWlanIP():
     ShowMessage("IP WLAN :       ")
     GotoLine(1)
     ShowMessage(get_ip_address('wlan0') )
+
+def ShowTemp():
+    temp, msg = check_CPU_temp()
+    GotoLine(0)
+    ShowMessage("TEMP :       ")
+    GotoLine(1)
+    ShowMessage(temp)
+
+def check_CPU_temp():
+    temp = None
+    err, msg = commands.getstatusoutput('vcgencmd measure_temp')
+    if not err:
+        m = re.search(r'-?\d\.?\d*', msg)   # https://stackoverflow.com/a/49563120/3904031
+        try:
+            temp = float(m.group())
+        except:
+            pass
+    return temp, msg
 
 
 #Pulse the LCD Enable line; used for clocking in data
