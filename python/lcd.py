@@ -1,6 +1,7 @@
 import time
 import signal
 import sys
+import socket
 import RPi.GPIO as GPIO
 
 # PIN-Configuration
@@ -53,12 +54,13 @@ def CheckSwitches():
         time.sleep(1)
     else:    
         GotoLine(1)
-        SendByte(0x06) #shift cursor right
-        SendByte(CLEARDISPLAY) #remove any stray characters on display
+        ShowMessage("..............")
 
 def ShowIP():
+    hostname = socket.gethostname()
+    IPAddr = socket.gethostbyname(hostname) 
     GotoLine(1)
-    ShowMessage("IP ADRESS")
+    ShowMessage("IP ADRESS: " + IPAddr)
 
 
 #Pulse the LCD Enable line; used for clocking in data
