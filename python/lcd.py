@@ -1,4 +1,6 @@
 import time
+import signal
+import sys
 import RPi.GPIO as GPIO
 
 # PIN-Configuration
@@ -93,6 +95,12 @@ def GotoLine(row):
     SendByte(SETCURSOR+addr)
 
 ########################################################################
+
+def signal_handler(sig, frame):
+    print('You pressed Ctrl+C!')
+    sys.exit(0)
+    
+signal.signal(signal.SIGINT, signal_handler)
 
 # Main Program
 print ("LCD program starting. Press CTRL+C to stop.")
