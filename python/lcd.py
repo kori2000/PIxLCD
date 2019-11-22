@@ -48,13 +48,13 @@ def CheckSwitches():
     print("val3 ", val3)
     print("val4 ", val4)
 
-    if val1 == 1:
+    if val4:
         ShowIP()
         time.sleep(1)
     else:    
-        InitLCD()
         GotoLine(1)
-        ShowMessage("...")
+        SendByte(0x06) #shift cursor right
+        SendByte(CLEARDISPLAY) #remove any stray characters on display
 
 def ShowIP():
     GotoLine(1)
