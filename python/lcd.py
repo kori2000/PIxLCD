@@ -55,8 +55,10 @@ def CheckSwitches():
         ShowIP()
         time.sleep(1)
     else:    
+        GotoLine(0)
+        ShowMessage("Press Button")
         GotoLine(1)
-        ShowMessage("               ")
+        ShowMessage("                ")
 
 
 def get_ip_address(ifname):
@@ -68,8 +70,10 @@ def get_ip_address(ifname):
     )[20:24])
 
 def ShowIP():    
+    GotoLine(0)
+    ShowMessage("IP WLAN0:")
     GotoLine(1)
-    ShowMessage("IP " + get_ip_address('wlan0') )
+    ShowMessage(get_ip_address('wlan0') )
 
 
 #Pulse the LCD Enable line; used for clocking in data
