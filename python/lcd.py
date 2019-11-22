@@ -43,11 +43,14 @@ def CheckSwitches():
     val3 = not GPIO.input(SW3)
     val4 = not GPIO.input(SW4)
 
+    print(val1)
+
     if val1 == 1:
         ShowIP()
         time.sleep(1)
     else:    
-        return (val4,val1,val2,val3)
+        GotoLine(1)
+        ShowMessage("...")
 
 def ShowIP():
     GotoLine(1)
@@ -121,9 +124,10 @@ InitIO()
 InitLCD()
 ShowMessage('Press a button!')
 while (True):
-    GotoLine(1)
-    switchValues = CheckSwitches()
-    decimalResult = " %d %d %d %d" % switchValues
-    ShowMessage(decimalResult)
+     CheckSwitches()
+    # GotoLine(1)
+    # switchValues = CheckSwitches()
+    # decimalResult = " %d %d %d %d" % switchValues
+    # ShowMessage(decimalResult)
 
 # time.sleep(0.2)
