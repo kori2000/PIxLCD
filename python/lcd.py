@@ -52,13 +52,16 @@ def CheckSwitches():
     print("val4 ", val4)
 
     if val4:
-        ShowIP()
-        time.sleep(1)
+        ShowWlanIP()        
+    elif val3:
+        ShowLanIP()
     else:    
         GotoLine(0)
         ShowMessage("Press Button    ")
         GotoLine(1)
         ShowMessage("                ")
+    
+    time.sleep(1)
 
 
 def get_ip_address(ifname):
@@ -69,7 +72,13 @@ def get_ip_address(ifname):
         struct.pack('256s', ifname[:15])
     )[20:24])
 
-def ShowIP():    
+def ShowLanIP():    
+    GotoLine(0)
+    ShowMessage("IP LAN :       ")
+    GotoLine(1)
+    ShowMessage(get_ip_address('eth0') )
+
+def ShowWlanIP():    
     GotoLine(0)
     ShowMessage("IP WLAN :       ")
     GotoLine(1)
@@ -144,6 +153,7 @@ InitLCD()
 ShowMessage("Press Button    ")
 while (True):
      CheckSwitches()
+     time.sleep(1)
     # GotoLine(1)
     # switchValues = CheckSwitches()
     # decimalResult = " %d %d %d %d" % switchValues
