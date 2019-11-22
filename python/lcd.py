@@ -56,6 +56,7 @@ def CheckSwitches():
         time.sleep(1)
     else:    
         GotoLine(0)
+        ShowMessage("                ")
         ShowMessage("Press Button")
         GotoLine(1)
         ShowMessage("                ")
@@ -71,6 +72,7 @@ def get_ip_address(ifname):
 
 def ShowIP():    
     GotoLine(0)
+    ShowMessage("                ")
     ShowMessage("IP WLAN0:")
     GotoLine(1)
     ShowMessage(get_ip_address('wlan0') )
