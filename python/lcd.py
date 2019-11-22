@@ -54,13 +54,13 @@ def CheckSwitches():
         time.sleep(1)
     else:    
         GotoLine(1)
-        ShowMessage("..............")
+        ShowMessage("...............")
 
 def ShowIP():
     hostname = socket.gethostname()
     IPAddr = socket.gethostbyname(hostname) 
     GotoLine(1)
-    ShowMessage("IP ADRESS: " + IPAddr)
+    ShowMessage("IP " + IPAddr)
 
 
 #Pulse the LCD Enable line; used for clocking in data
